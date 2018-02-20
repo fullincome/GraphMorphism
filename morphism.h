@@ -1,7 +1,7 @@
-#ifndef AUTOMORPHISM_H
-#define AUTOMORPHISM_H
+#ifndef Morphism_H
+#define Morphism_H
 
-#endif // AUTOMORPHISM_H
+#endif // Morphism_H
 
 #include <fstream>
 #include <iostream>
@@ -10,14 +10,15 @@
 #include <math.h>
 #include <QProgressBar>
 #include <QMessageBox>
+#include <stream.h>
 
 using namespace std;
 
 
-class Automorphism
+class Morphism
 {
-    unsigned char **matrix;
-    unsigned char **matrix_2;
+    vector<vector<unsigned char>> matrix;
+    vector<vector<unsigned char>> matrix_2;
     int n;
     int n2;
     vector<int> lens_set;
@@ -31,11 +32,11 @@ class Automorphism
     void Simple(QString str);
 public:
 
-    Automorphism(int k, QString &outs);
-    Automorphism(int k, string text, string text2);
-    Automorphism(int k, int k2, string text, string text2);
+    Morphism(int k, QString &outs);
+    Morphism(int k, string text, string text2);
+    Morphism(int k, int k2, string text, string text2);
 
-    ~Automorphism();
+    ~Morphism();
 
     int getAM(QProgressBar *progress, QString &outs);
 

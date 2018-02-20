@@ -1,11 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
-int matrixSize = 2;
-int matrixSize_2 = 2;
-
-QString out;
-
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
@@ -21,25 +16,24 @@ MainWindow::~MainWindow()
 
 void MainWindow::on_spinBox_valueChanged(int arg1)
 {
-    matrixSize = arg1;
+    mStream.setMatrixSize(arg1);
 }
 
 
 void MainWindow::on_spinBox_2_valueChanged(int arg1)
 {
-    matrixSize_2 = arg1;
+    mStream.setMatrix_2Size(arg1);
 }
 
 void MainWindow::on_genRandomGraphBtn_clicked()
 {
-    QString inputMatrix;
-    out.clear();
-    ui->textEdit_2->clear();
-    Automorphism am(matrixSize, inputMatrix);
-    ui->textEdit->setPlainText(inputMatrix);
-    ui->textEdit_3->setPlainText(inputMatrix);
+    mStream.setMatrix();
+    ui->outputEdit->clear();
+    Morphism am(matrixSize, inputMatrix);
+    ui->matrixEdit->setPlainText(inputMatrix);
+    ui->matrix_2Edit->setPlainText(inputMatrix);
     am.getAM(ui->progressBar, out);
-    ui->textEdit_2->setPlainText(out);
+    ui->outputEdit->setPlainText(out);
     out.clear();
 
     vector<int> score = am.getScore();
@@ -86,16 +80,10 @@ void MainWindow::on_genRandomGraphBtn_clicked()
 
 void MainWindow::on_automorphismBtn_clicked()
 {
-    ui->label->setText("Автоморфизмы:");
-    out.clear();
-    ui->outputEdit->clear();
-    str message;
-    QString stroka = ui->matrixEdit->toPlainText();
-    string texts = stroka.toStdString();
+    ui->outputLabel->setText("Автоморфизмы:");
+    mStream.setMatrix(ui->matrixEdit->toPlainText());
 
-    //message.Simple(stroka);
-
-    Automorphism am(matrixSize, texts, texts);
+    Morphism am(matrixSize, texts, texts);
     am.getAM(ui->progressBar, out);
     ui->outputEdit->setPlainText(out);
 
@@ -145,31 +133,31 @@ void MainWindow::on_shuffleBtn_clicked()
 {
     QString shuffleString;
     shuffleString.clear();
-    QString stroka = ui->textEdit->toPlainText();
+    QString stroka = ui->matrixEdit->toPlainText();
     string texts = stroka.toStdString();
-    Automorphism am(matrixSize, texts, texts);
+    Morphism am(matrixSize, texts, texts);
     am.shuffleMatrix(shuffleString);
-    ui->textEdit->setPlainText(shuffleString);
+    ui->matrixEdit->setPlainText(shuffleString);
 }
 
 
 
 void MainWindow::on_isomorphismBtn_clicked()
 {
-    ui->label->setText("Изоморфизмы:");
+    ui->outputLabel->setText("Изоморфизмы:");
     out.clear();
-    ui->textEdit_2->clear();
+    ui->outputEdit->clear();
     str message;
-    QString stroka = ui->textEdit->toPlainText();
+    QString stroka = ui->matrixEdit->toPlainText();
     string texts = stroka.toStdString();
-    QString stroka2 = ui->textEdit_3->toPlainText();
+    QString stroka2 = ui->matrix_2Edit->toPlainText();
     string texts2 = stroka2.toStdString();
 
     //message.Simple(stroka);
 
-    Automorphism am(matrixSize, texts, texts2);
+    Morphism am(matrixSize, texts, texts2);
     am.getAM(ui->progressBar, out);
-    ui->textEdit_2->setPlainText(out);
+    ui->outputEdit->setPlainText(out);
 
 
     vector<int> score = am.getScore();
@@ -214,20 +202,20 @@ void MainWindow::on_isomorphismBtn_clicked()
 
 void MainWindow::on_gomomorphismBtn_clicked()
 {
-    ui->label->setText("Гомоморфизмы:");
+    ui->outputLabel->setText("Гомоморфизмы:");
     out.clear();
-    ui->textEdit_2->clear();
+    ui->outputEdit->clear();
     str message;
-    QString stroka = ui->textEdit->toPlainText();
+    QString stroka = ui->matrixEdit->toPlainText();
     string texts = stroka.toStdString();
-    QString stroka2 = ui->textEdit_3->toPlainText();
+    QString stroka2 = ui->matrix_2Edit->toPlainText();
     string texts2 = stroka2.toStdString();
 
     //message.Simple(stroka);
 
-    Automorphism am(matrixSize, matrixSize_2, texts, texts2);
+    Morphism am(matrixSize, matrixSize_2, texts, texts2);
     am.getAM(ui->progressBar, out);
-    ui->textEdit_2->setPlainText(out);
+    ui->outputEdit->setPlainText(out);
 
 
     vector<int> score = am.getScore();
@@ -277,4 +265,9 @@ void MainWindow::on_matrixEdit_textChanged()
     ui->matrixEdit->toPlainText().isEmpty() ?
         ui->shuffleBtn->setDisabled(true):
         ui->shuffleBtn->setEnabled(true);
+}
+
+void MainWindow::on_matrix_2Edit_textChanged()
+{
+
 }

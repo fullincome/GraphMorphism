@@ -1,14 +1,14 @@
-﻿// Automorphism.cpp: определяет точку входа для консольного приложения.
+﻿// Morphism.cpp: определяет точку входа для консольного приложения.
 //
 
-#include "automorphism.h"
+#include "morphism.h"
 
 using namespace std;
 
 static unsigned short matrix_elem[500000][400];
 static unsigned short matrix_elem2[500000][400];
 
-int Automorphism::eq(unsigned short *elem, int column, int size) {
+int Morphism::eq(unsigned short *elem, int column, int size) {
     for (int i = 0; i < size; ++i) {
         if ((matrix[column][elem[i]] != matrix_2[size][i]) || (matrix[elem[i]][column] != matrix_2[i][size])) {
             return 0;
@@ -20,7 +20,7 @@ int Automorphism::eq(unsigned short *elem, int column, int size) {
     return 1;
 }
 
-int Automorphism::check(unsigned short *elem, int i, int size) {
+int Morphism::check(unsigned short *elem, int i, int size) {
     for (int k = 0; k < size; ++k) {
         if (elem[k] == i) {
             return 0;
@@ -29,7 +29,7 @@ int Automorphism::check(unsigned short *elem, int i, int size) {
     return 1;
 }
 
-void Automorphism::Simple(const QString str)
+void Morphism::Simple(const QString str)
 {
     QMessageBox msg;
     msg.setText(str);
@@ -37,7 +37,7 @@ void Automorphism::Simple(const QString str)
 }
 
 
-Automorphism::Automorphism(int k, QString &outs) {
+Morphism::Morphism(int k, QString &outs) {
     n = k;
     n2 = k;
     matrix = new unsigned char* [n];
@@ -56,7 +56,7 @@ Automorphism::Automorphism(int k, QString &outs) {
 }
 
 
-Automorphism::Automorphism(int k, string text, string text2) {
+Morphism::Morphism(int k, string text, string text2) {
     n = k;
     n2 = k;
     int l = 0;
@@ -75,7 +75,7 @@ Automorphism::Automorphism(int k, string text, string text2) {
     }
 }
 
-Automorphism::Automorphism(int k, int k2, string text, string text2) {
+Morphism::Morphism(int k, int k2, string text, string text2) {
     n = k;
     n2 = k2;
     int l = 0;
@@ -100,7 +100,7 @@ Automorphism::Automorphism(int k, int k2, string text, string text2) {
     }
 }
 
-Automorphism::~Automorphism() {
+Morphism::~Morphism() {
     for (int i = 0; i < n; ++i) {
         delete[] matrix[i];
     }
@@ -111,7 +111,7 @@ Automorphism::~Automorphism() {
     delete[] matrix_2;
 }
 
-int Automorphism::getAM(QProgressBar *progress, QString &outs) {
+int Morphism::getAM(QProgressBar *progress, QString &outs) {
     int ident = 1;
     new_size = 0;
     for (int i = 0; i < n; ++i) {
@@ -127,8 +127,8 @@ int Automorphism::getAM(QProgressBar *progress, QString &outs) {
     for (int p = 0; p < n2 - 1; ++p) {
         for (int k = 0; k < size_elem; ++k) {
             for (int i = 0; i < n; ++i) {
-                if (Automorphism::check(matrix_elem[k], i, p + 1)) {
-                    if (Automorphism::eq(matrix_elem[k], i, p + 1)) {
+                if (Morphism::check(matrix_elem[k], i, p + 1)) {
+                    if (Morphism::eq(matrix_elem[k], i, p + 1)) {
                         for (int z = 0; z < p + 1; ++z) {
                             matrix_elem2[new_size][z] = matrix_elem[k][z];
                         }
@@ -139,11 +139,11 @@ int Automorphism::getAM(QProgressBar *progress, QString &outs) {
             }
         }
         // if ((p >= (log(static_cast<double>(n))/log(2.0))) && new_size > 1 && ident == 1) {
-        //     Automorphism::Simple("Автоморфизмы найдены");
+        //     Morphism::Simple("Автоморфизмы найдены");
         //     ident = 0;
         // }
         //    if ((p >= (log(static_cast<double>(n))/log(2.0))) && new_size == 1 && ident == 1) {
-        //        Automorphism::Simple("Автоморфизмов нет");
+        //        Morphism::Simple("Автоморфизмов нет");
         //        ident = 0;
         // }
                size_elem = new_size;
@@ -169,7 +169,7 @@ int Automorphism::getAM(QProgressBar *progress, QString &outs) {
     return 0;
 }
 
-void Automorphism::Exchange(int i, int j) {
+void Morphism::Exchange(int i, int j) {
 	unsigned char tmp;
 	for (int k = 0; k < n; ++k) {
 		tmp = matrix[i][k];
@@ -183,7 +183,7 @@ void Automorphism::Exchange(int i, int j) {
 	}
 }
 
-void Automorphism::shuffleMatrix(QString &outs) {
+void Morphism::shuffleMatrix(QString &outs) {
 	for (int i = 0; i < n - 1; ++i) {
         Exchange(i, (rand() % (n - i)) + i);
 	}
@@ -196,7 +196,7 @@ void Automorphism::shuffleMatrix(QString &outs) {
     }
 }
 
-vector<int> Automorphism::getScore() {
+vector<int> Morphism::getScore() {
     return score;
 }
 

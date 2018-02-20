@@ -3,7 +3,7 @@
 
 #include <QMainWindow>
 #include <algorithm>
-#include "automorphism.h"
+#include "morphism.h"
 #include <QString>
 #include <QMessageBox>
 
@@ -19,22 +19,21 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
+    MatrixStream mStream;
+
 private slots:
+    void on_shuffleBtn_clicked();
     void on_genRandomGraphBtn_clicked();
 
-    void on_spinBox_valueChanged(int arg1);
-
-    void on_shuffleBtn_clicked();
-
     void on_automorphismBtn_clicked();
-
     void on_isomorphismBtn_clicked();
-
     void on_gomomorphismBtn_clicked();
 
+    void on_spinBox_valueChanged(int arg1);
     void on_spinBox_2_valueChanged(int arg1);
 
     void on_matrixEdit_textChanged();
+    void on_matrix_2Edit_textChanged();
 
 private:
     Ui::MainWindow *ui;

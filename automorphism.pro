@@ -26,10 +26,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     qcustomplot.cpp \
-    automorphism.cpp
+    stream.cpp \
+    morphism.cpp
 
 HEADERS  += mainwindow.h \
     qcustomplot.h \
-    automorphism.h
+    stream.h \
+    morphism.h
 
 FORMS    += mainwindow.ui
