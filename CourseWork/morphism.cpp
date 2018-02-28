@@ -36,82 +36,14 @@ void Morphism::Simple(const QString str)
     msg.exec();
 }
 
-
-Morphism::Morphism(int k, QString &outs) {
+Morphism::Morphism(int k, int k_2, vector<vector<unsigned char>> matrix, vector<vector<unsigned char>> matrix_2) {
     n = k;
-    n2 = k;
-    matrix = new unsigned char* [n];
-    matrix_2 = new unsigned char* [n];
-    for (int i = 0; i < n; ++i) {
-        matrix[i] = new unsigned char[n];
-        matrix_2[i] = new unsigned char[n];
-    }
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            matrix_2[i][j] = matrix[i][j] = static_cast<int>(rand() % 2);
-            outs += QString().sprintf("%d", matrix[i][j]);
-        }
-        outs.push_back('\n');
-    }
+    n_2 = k_2;
+    this->matrix = matrix;
+    this->matrix_2 = matrix_2;
 }
 
-
-Morphism::Morphism(int k, string text, string text2) {
-    n = k;
-    n2 = k;
-    int l = 0;
-    matrix = new unsigned char* [n];
-    matrix_2 = new unsigned char* [n];
-    for (int i = 0; i < n; ++i) {
-        matrix[i] = new unsigned char[n];
-        matrix_2[i] = new unsigned char[n];
-    }
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            matrix[i][j] = static_cast<unsigned char>(text[i*n + j + l] - '0');
-            matrix_2[i][j] = static_cast<unsigned char>(text2[i*n + j + l] - '0');
-        }
-        l += 1;
-    }
-}
-
-Morphism::Morphism(int k, int k2, string text, string text2) {
-    n = k;
-    n2 = k2;
-    int l = 0;
-    matrix = new unsigned char* [n];
-    matrix_2 = new unsigned char* [n2];
-    for (int i = 0; i < n; ++i) {
-        matrix[i] = new unsigned char[n];
-        matrix_2[i] = new unsigned char[n2];
-    }
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            matrix[i][j] = static_cast<unsigned char>(text[i*n + j + l] - '0');
-        }
-        l += 1;
-    }
-    l = 0;
-    for (int i = 0; i < n2; ++i) {
-        for (int j = 0; j < n2; ++j) {
-            matrix_2[i][j] = static_cast<unsigned char>(text2[i*n2 + j + l] - '0');
-        }
-        l += 1;
-    }
-}
-
-Morphism::~Morphism() {
-    for (int i = 0; i < n; ++i) {
-        delete[] matrix[i];
-    }
-    delete[] matrix;
-    for (int i = 0; i < n2; ++i) {
-        delete[] matrix_2[i];
-    }
-    delete[] matrix_2;
-}
-
-int Morphism::getAM(QProgressBar *progress, QString &outs) {
+int Morphism::getAutomorphism(QProgressBar *progress, QString &outs) {
     int ident = 1;
     new_size = 0;
     for (int i = 0; i < n; ++i) {

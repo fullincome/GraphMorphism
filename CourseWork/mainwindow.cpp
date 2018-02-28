@@ -83,10 +83,9 @@ void MainWindow::on_automorphismBtn_clicked()
     ui->outputLabel->setText("Автоморфизмы:");
     mStream.setMatrix(ui->matrixEdit->toPlainText());
 
-    Morphism am(matrixSize, texts, texts);
-    am.getAM(ui->progressBar, out);
-    ui->outputEdit->setPlainText(out);
-
+    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix);
+    morphism.getAutomorphism(ui->progressBar, mStream.resultText);
+    ui->outputEdit->setPlainText(mStream.resultText);
 
     vector<int> score = am.getScore();
 
