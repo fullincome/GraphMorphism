@@ -1,0 +1,77 @@
+\documentclass[oneside,senior,etd]{BYUPhys}
+
+\usepackage[utf8]{inputenc}
+\usepackage{rotating} 
+
+\usepackage[english, russian]{babel}
+\usepackage[backend=biber, babel=other, style=gost-authoryear]{biblatex}
+\usepackage{amsfonts} % Пакеты для математических символов и теорем
+\usepackage{amstext}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{graphicx} % Пакеты для вставки графики
+\usepackage{subfig}
+\usepackage{color}
+\usepackage[unicode]{hyperref}
+\usepackage[nottoc]{tocbibind} % Для того, чтобы список литературы отображался в оглавлении
+\usepackage{algorithmic} % Для записи алгоритмов в псевдокоде
+\usepackage{algorithm}
+\usepackage{verbatim} % Для вставок заранее подготовленного текста в режиме as-is
+\usepackage{tikz}
+\usetikzlibrary{shadows,arrows}
+
+\Chair{Кафедра информационной безопасности}
+\Lab{~}
+\Year{2018}
+  \Month{}
+  \City{Москва}
+  \AuthorText{Автор}
+  \Author{Ефремов Степан Сергеевич}
+  \AuthorEng{}
+  \AcadGroup{419}
+
+  \TitleTop{Разработка итерационных алгоритмов поиска автоморфизмов}
+  \TitleBottom{и изоморфизмов комбинаторных объектов.} % leave empty if you don't need it
+  \TitleTopEng{Development of iterative algorithms for searching}
+  \TitleBottomEng{automorphisms and isomorphisms of combinatorial objects.} % leave empty if you don't need it  
+  \docname{ВЫПУСКНАЯ КВАЛИФИКАЦИОННАЯ РАБОТА}
+  \Advisor{
+  
+  Егоров Владимир Николаевич}  
+  \AdvisorDegree{доцент, к.ф.- м.н.}
+
+
+
+%%%% DON'T change this. It is here because .sty does not support cyrillic cp properly %%%%
+\University{Московский государственный университет имени М.В.Ломоносова}
+\Faculty{Факультет вычислительной математики и кибернетики}
+\GrText{группа}
+\AdvisorText{Научный руководитель}
+\AbstractText{Аннотация}
+
+%\bibliographystyle{gost71u} % Для соответствия требованиям об оформлении списка литературы
+%#\bibliography{references}
+\addbibresource{references.bib}
+
+\begin{document}
+\fixmargins
+\makepreliminarypages
+
+\oneandhalfspace
+
+\tableofcontents
+
+\include{Introduction} % Введение
+\include{Chapter2} % Постановка задачи
+\include{Chapter3} % Описание алгоритма
+\include{Chapter4} % Исследование задачи
+\include{Modern} % Модернизация
+\include{Chapter5} % Результаты
+\include{Chapter6} % Заключение
+
+\nocite{*}
+
+\printbibliography
+
+
+\end{document}
