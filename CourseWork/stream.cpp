@@ -1,23 +1,33 @@
 #include <stream.h>
 
+QString MatrixStream::setRandomMatrix() {
+    for (int i = 0; i < matrixSize; ++i) {
+        for (int j = 0; j < matrixSize; ++j) {
+            matrix[i][j] = rand() % topRange;
+        }
+    }
+    return "Ok";
+}
+
 QString MatrixStream::setMatrix(QString text) {
     matrixText = text;
+    std::string std_text = matrixText.toStdString();
     int row = 0;
     int col = 0;
     int i = 0;
-    while (matrixText[i] != '\0')
-        if (botRange < matrixText[i] - '0' < topRange) {
-                if (col == size || row == size) return "Wrong input (long line)";
-                matrix[row][col] = static_cast<unsigned char>(matrixText[i] - '0');
+    while (std_text[i] != '\0') {
+        if (botRange < std_text[i] - '0' < topRange) {
+                if (col == matrixSize || row == matrixSize) return "Wrong input (long line)";
+                matrix[row][col] = static_cast<unsigned char>(std_text[i] - '0');
                 ++i;
                 ++col;
                 continue;
         }
-        if (col == size) {
-            if (matrixText[i] == ' ') {
+        if (col == matrixSize) {
+            if (std_text[i] == ' ') {
                 ++i;
                 continue;
-            } else if (matrixText[i] == '\n'){
+            } else if (std_text[i] == '\n'){
                 ++row;
                 ++i;
                 continue;
@@ -25,8 +35,9 @@ QString MatrixStream::setMatrix(QString text) {
                 return "Wrong input";
             }
             row++;
+        }
     }
-    if (row * col != (size - 1)*(size - 1)) {
+    if (row * col != (matrixSize - 1)*(matrixSize - 1)) {
         return "Wrong input";
     } else {
         return "Ok";
@@ -35,22 +46,23 @@ QString MatrixStream::setMatrix(QString text) {
 
 QString MatrixStream::setMatrix_2(QString text) {
     matrix_2Text = text;
+    std::string std_text = matrix_2Text.toStdString();
     int row = 0;
     int col = 0;
     int i = 0;
-    while (matrix_2Text[i] != '\0')
-        if (botRange < matrix_2Text[i] - '0' < topRange) {
-                if (col == size || row == size) return "Wrong input (long line)";
-                matrix[row][col] = static_cast<unsigned char>(matrix_2Text[i] - '0');
+    while (std_text[i] != '\0') {
+        if (botRange < std_text[i] - '0' < topRange) {
+                if (col == matrixSize || row == matrixSize) return "Wrong input (long line)";
+                matrix_2[row][col] = static_cast<unsigned char>(std_text[i] - '0');
                 ++i;
                 ++col;
                 continue;
         }
-        if (col == size) {
-            if (matrix_2Text[i] == ' ') {
+        if (col == matrixSize) {
+            if (std_text[i] == ' ') {
                 ++i;
                 continue;
-            } else if (matrix_2Text[i] == '\n'){
+            } else if (std_text[i] == '\n'){
                 ++row;
                 ++i;
                 continue;
@@ -58,8 +70,9 @@ QString MatrixStream::setMatrix_2(QString text) {
                 return "Wrong input";
             }
             row++;
+        }
     }
-    if (row * col != (size - 1)*(size - 1)) {
+    if (row * col != (matrixSize - 1)*(matrixSize - 1)) {
         return "Wrong input";
     } else {
         return "Ok";
@@ -68,10 +81,10 @@ QString MatrixStream::setMatrix_2(QString text) {
 
 void MatrixStream::setMatrixSize(int size) {
     matrixSize = size;
-    matrix = vector<vector<unsigned char>> (matrixSize, vector<unsigned char>(matrixSize));
+    matrix = std::vector<std::vector<unsigned char> > (matrixSize, std::vector<unsigned char>(matrixSize));
 }
 
 void MatrixStream::setMatrix_2Size(int size) {
     matrix_2Size = size;
-    matrix_2 = vector<vector<unsigned char>> (matrix_2Size, vector<unsigned char>(matrix_2Size));
+    matrix_2 = std::vector<std::vector<unsigned char> > (matrix_2Size, std::vector<unsigned char>(matrix_2Size));
 }

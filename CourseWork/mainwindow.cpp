@@ -27,16 +27,15 @@ void MainWindow::on_spinBox_2_valueChanged(int arg1)
 
 void MainWindow::on_genRandomGraphBtn_clicked()
 {
-    mStream.setMatrix();
+    mStream.setRandomMatrix();
     ui->outputEdit->clear();
-    Morphism am(matrixSize, inputMatrix);
-    ui->matrixEdit->setPlainText(inputMatrix);
-    ui->matrix_2Edit->setPlainText(inputMatrix);
-    am.getAM(ui->progressBar, out);
-    ui->outputEdit->setPlainText(out);
-    out.clear();
+    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix);
+    ui->matrixEdit->setPlainText(mStream.matrixText);
+    ui->matrix_2Edit->setPlainText(mStream.matrixText);
+    morphism.getAutomorphism(ui->progressBar, mStream.resultText);
+    ui->outputEdit->setPlainText(mStream.resultText);
 
-    vector<int> score = am.getScore();
+    vector<int> score = morphism.getScore();
 
     //ui->setupUi(this);
 
@@ -87,7 +86,7 @@ void MainWindow::on_automorphismBtn_clicked()
     morphism.getAutomorphism(ui->progressBar, mStream.resultText);
     ui->outputEdit->setPlainText(mStream.resultText);
 
-    vector<int> score = am.getScore();
+    vector<int> score = morphism.getScore();
 
     //ui->setupUi(this);
 
@@ -132,11 +131,10 @@ void MainWindow::on_shuffleBtn_clicked()
 {
     QString shuffleString;
     shuffleString.clear();
-    QString stroka = ui->matrixEdit->toPlainText();
-    string texts = stroka.toStdString();
-    Morphism am(matrixSize, texts, texts);
-    am.shuffleMatrix(shuffleString);
-    ui->matrixEdit->setPlainText(shuffleString);
+    mStream.setMatrix(ui->matrixEdit->toPlainText());
+    Morphism am(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix);
+    am.shuffleMatrix(mStream.matrixText);
+    ui->matrixEdit->setPlainText(mStream.matrixText);
 }
 
 
@@ -144,22 +142,18 @@ void MainWindow::on_shuffleBtn_clicked()
 void MainWindow::on_isomorphismBtn_clicked()
 {
     ui->outputLabel->setText("Изоморфизмы:");
-    out.clear();
+    mStream.resultText.clear();
     ui->outputEdit->clear();
-    str message;
-    QString stroka = ui->matrixEdit->toPlainText();
-    string texts = stroka.toStdString();
-    QString stroka2 = ui->matrix_2Edit->toPlainText();
-    string texts2 = stroka2.toStdString();
 
     //message.Simple(stroka);
+    mStream.setMatrix(ui->matrixEdit->toPlainText());
+    mStream.setMatrix(ui->matrix_2Edit->toPlainText());
 
-    Morphism am(matrixSize, texts, texts2);
-    am.getAM(ui->progressBar, out);
-    ui->outputEdit->setPlainText(out);
+    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix);
+    morphism.getAutomorphism(ui->progressBar, mStream.resultText);
+    ui->outputEdit->setPlainText(mStream.resultText);
 
-
-    vector<int> score = am.getScore();
+    vector<int> score = morphism.getScore();
 
     //ui->setupUi(this);
 
@@ -202,22 +196,18 @@ void MainWindow::on_isomorphismBtn_clicked()
 void MainWindow::on_gomomorphismBtn_clicked()
 {
     ui->outputLabel->setText("Гомоморфизмы:");
-    out.clear();
+    mStream.resultText.clear();
     ui->outputEdit->clear();
-    str message;
-    QString stroka = ui->matrixEdit->toPlainText();
-    string texts = stroka.toStdString();
-    QString stroka2 = ui->matrix_2Edit->toPlainText();
-    string texts2 = stroka2.toStdString();
 
     //message.Simple(stroka);
+    mStream.setMatrix(ui->matrixEdit->toPlainText());
+    mStream.setMatrix(ui->matrix_2Edit->toPlainText());
 
-    Morphism am(matrixSize, matrixSize_2, texts, texts2);
-    am.getAM(ui->progressBar, out);
-    ui->outputEdit->setPlainText(out);
+    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix);
+    morphism.getAutomorphism(ui->progressBar, mStream.resultText);
+    ui->outputEdit->setPlainText(mStream.resultText);
 
-
-    vector<int> score = am.getScore();
+    vector<int> score = morphism.getScore();
 
     //ui->setupUi(this);
 

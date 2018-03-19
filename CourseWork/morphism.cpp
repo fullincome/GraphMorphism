@@ -36,7 +36,7 @@ void Morphism::Simple(const QString str)
     msg.exec();
 }
 
-Morphism::Morphism(int k, int k_2, vector<vector<unsigned char>> matrix, vector<vector<unsigned char>> matrix_2) {
+Morphism::Morphism(int k, int k_2, vector<vector<unsigned char> > matrix, vector<vector<unsigned char> > matrix_2) {
     n = k;
     n_2 = k_2;
     this->matrix = matrix;
@@ -56,7 +56,7 @@ int Morphism::getAutomorphism(QProgressBar *progress, QString &outs) {
     size_elem = new_size;
     new_size = 0;
 
-    for (int p = 0; p < n2 - 1; ++p) {
+    for (int p = 0; p < n_2 - 1; ++p) {
         for (int k = 0; k < size_elem; ++k) {
             for (int i = 0; i < n; ++i) {
                 if (Morphism::check(matrix_elem[k], i, p + 1)) {
@@ -91,7 +91,7 @@ int Morphism::getAutomorphism(QProgressBar *progress, QString &outs) {
     }
     progress->setValue(100);
     for (int i = 0; i < size_elem; ++i) {
-        for (int z = 0; z < n2; ++z) {
+        for (int z = 0; z < n_2; ++z) {
             //outs.push_back(matrix_elem2[i][z]);
             outs += QString().sprintf("%d", matrix_elem2[i][z]);
             outs.push_back(' ');

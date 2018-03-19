@@ -17,8 +17,8 @@ using namespace std;
 
 class Morphism
 {
-    vector<vector<unsigned char>> matrix;
-    vector<vector<unsigned char>> matrix_2;
+    vector<vector<unsigned char> > matrix;
+    vector<vector<unsigned char> > matrix_2;
     int n;
     int n_2;
     vector<int> lens_set;
@@ -31,7 +31,7 @@ class Morphism
     void Simple(QString str);
 public:
 
-    Morphism(int k, int k_2, vector<vector<unsigned char>> matrix, vector<vector<unsigned char>> matrix_2);
+    Morphism(int k, int k_2, vector<vector<unsigned char> > matrix, vector<vector<unsigned char> > matrix_2);
 
     int getAutomorphism(QProgressBar *progress, QString &outs);
     int getIsomorphism(QProgressBar *progress, QString &outs);
