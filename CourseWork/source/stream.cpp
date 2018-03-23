@@ -1,12 +1,14 @@
 #include <stream.h>
 
-QString MatrixStream::setRandomMatrix() {
+QString MatrixStream::setRandomMatrix(std::vector<std::vector<unsigned char> > matrix) {
+    QString outs;
     for (int i = 0; i < matrixSize; ++i) {
         for (int j = 0; j < matrixSize; ++j) {
             matrix[i][j] = rand() % topRange;
+            outs += QString().sprintf("%d", matrix[i][j]);
         }
     }
-    return "Ok";
+    return outs;
 }
 
 QString MatrixStream::setMatrix(QString text) {

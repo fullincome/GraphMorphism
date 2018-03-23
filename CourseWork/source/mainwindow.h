@@ -20,6 +20,7 @@ public:
     ~MainWindow();
 
     MatrixStream mStream;
+    void printPlot(vector<long long> v);
 
 private slots:
     void on_shuffleBtn_clicked();

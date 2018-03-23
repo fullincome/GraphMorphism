@@ -128,7 +128,7 @@ void Morphism::shuffleMatrix(QString &outs) {
     }
 }
 
-vector<int> Morphism::getScore() {
+vector<long long> Morphism::getScore() {
     return score;
 }
 

@@ -23,7 +23,7 @@ class Morphism
     int n_2;
     vector<int> lens_set;
     int size_elem, new_size;
-    vector<int> score;
+    vector<long long> score;
 
     int eq(unsigned short *elem, int column, int size);
     int check(unsigned short *elem, int i, int size);
@@ -39,6 +39,6 @@ public:
 
     void Exchange(int i, int j);
     void shuffleMatrix(QString &outs);
-    vector<int> getScore();
+    vector<long long> getScore();
 
 };

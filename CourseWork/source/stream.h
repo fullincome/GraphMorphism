@@ -15,7 +15,8 @@ public:
     std::vector<std::vector<unsigned char> > matrix;
     std::vector<std::vector<unsigned char> > matrix_2;
     QString resultText;
-    QString setRandomMatrix();
+
+    QString setRandomMatrix(std::vector<std::vector<unsigned char> > matrix);
     QString setMatrix(QString text);
     QString setMatrix_2(QString text);
     void setMatrixSize(int size);
