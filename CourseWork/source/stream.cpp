@@ -1,14 +1,18 @@
 #include <stream.h>
 
-QString MatrixStream::setRandomMatrix(std::vector<std::vector<unsigned char> > matrix) {
-    QString outs;
-    for (int i = 0; i < matrixSize; ++i) {
-        for (int j = 0; j < matrixSize; ++j) {
-            matrix[i][j] = rand() % topRange;
-            outs += QString().sprintf("%d", matrix[i][j]);
-        }
+void MatrixStream::exchange(std::vector<std::vector<unsigned char> > &matrix, int i, int j) {
+    unsigned char tmp;
+    int n = matrix.size();
+    for (int k = 0; k < n; ++k) {
+        tmp = matrix[i][k];
+        matrix[i][k] = matrix[j][k];
+        matrix[j][k] = tmp;
     }
-    return outs;
+    for (int k = 0; k < n; ++k) {
+        tmp = matrix[k][i];
+        matrix[k][i] = matrix[k][j];
+        matrix[k][j] = tmp;
+    }
 }
 
 QString MatrixStream::setMatrix(QString text) {
@@ -17,8 +21,8 @@ QString MatrixStream::setMatrix(QString text) {
     int row = 0;
     int col = 0;
     int i = 0;
-    while (std_text[i] != '\0') {
-        if (botRange < std_text[i] - '0' < topRange) {
+    while (std_text.size() != i) {
+        if (botRange <= std_text[i] - '0' <= topRange) {
                 if (col == matrixSize || row == matrixSize) return "Wrong input (long line)";
                 matrix[row][col] = static_cast<unsigned char>(std_text[i] - '0');
                 ++i;

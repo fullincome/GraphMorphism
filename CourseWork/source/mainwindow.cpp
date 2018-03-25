@@ -8,6 +8,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->shuffleBtn->setDisabled(true);
 
+    mStream.botRange = 0;
+    mStream.topRange = 1;
     mStream.setMatrixSize(2);
     mStream.setMatrixSize(2);
 }
@@ -52,37 +54,58 @@ void MainWindow::printPlot(vector<long long> v) {
     //Для показа границ по оси Oy сложнее, так как надо по правильному
     //вычислить минимальное и максимальное значение в векторах
     int minY = 0, maxY = static_cast<int>((*max_element(score.begin(), score.end())) * 1.2);
-
     ui->widget->yAxis->setRange(minY, maxY);//Для оси Oy
-
     ui->widget->replot();
 }
 
-void MainWindow::on_spinBox_valueChanged(int arg1)
+void MainWindow::randomMatrix(MatrixStream &mStream) {
+    mStream.matrixText.clear();
+    int n = mStream.matrixSize;
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            mStream.matrixText += QString().sprintf("%d", mStream.botRange + rand() % (mStream.topRange + 1));
+        }
+        mStream.matrixText.push_back('\n');
+    }
+    mStream.setMatrix(mStream.matrixText);
+    ui->matrixEdit->setText(mStream.matrixText);
+}
+
+void MainWindow::shuffleMatrix(MatrixStream &mStream) {
+    mStream.matrixText.clear();
+    int n = mStream.matrixSize;
+    for (int i = 0; i < n - 1; ++i) {
+        mStream.exchange(mStream.matrix, i, (rand() % (n - i)) + i);
+    }
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            mStream.matrixText += QString().sprintf("%d", mStream.matrix[i][j]);
+        }
+        mStream.matrixText.push_back('\n');
+    }
+    mStream.setMatrix(mStream.matrixText);
+    ui->matrixEdit->setText(mStream.matrixText);
+}
+
+void MainWindow::on_matrixSpinBox_valueChanged(int arg1)
 {
     mStream.setMatrixSize(arg1);
 }
 
-
-void MainWindow::on_spinBox_2_valueChanged(int arg1)
+void MainWindow::on_matrixSpinBox_2_valueChanged(int arg1)
 {
     mStream.setMatrix_2Size(arg1);
 }
 
 void MainWindow::on_genRandomGraphBtn_clicked()
 {
-    QString matrix = mStream.setRandomMatrix(mStream.matrix);
-    ui->outputEdit->clear();
-    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix);
-    ui->matrixEdit->setPlainText(matrix);
-    ui->matrix_2Edit->setPlainText(mStream.matrixText);
-    morphism.getAutomorphism(ui->progressBar, mStream.resultText);
-    ui->outputEdit->setPlainText(mStream.resultText);
-
-    printPlot(morphism.getScore());
+    randomMatrix(mStream);
 }
 
-
+void MainWindow::on_shuffleBtn_clicked()
+{
+    shuffleMatrix(mStream);
+}
 
 void MainWindow::on_automorphismBtn_clicked()
 {
@@ -95,19 +118,6 @@ void MainWindow::on_automorphismBtn_clicked()
 
     printPlot(morphism.getScore());
 }
-
-
-void MainWindow::on_shuffleBtn_clicked()
-{
-    QString shuffleString;
-    shuffleString.clear();
-    mStream.setMatrix(ui->matrixEdit->toPlainText());
-    Morphism am(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix);
-    am.shuffleMatrix(mStream.matrixText);
-    ui->matrixEdit->setPlainText(mStream.matrixText);
-}
-
-
 
 void MainWindow::on_isomorphismBtn_clicked()
 {
@@ -156,3 +166,4 @@ void MainWindow::on_matrix_2Edit_textChanged()
 {
 
 }
+
