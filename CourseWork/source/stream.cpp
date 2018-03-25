@@ -20,68 +20,64 @@ QString MatrixStream::setMatrix(QString text) {
     std::string std_text = matrixText.toStdString();
     int row = 0;
     int col = 0;
-    int i = 0;
+    unsigned int i = 0;
     while (std_text.size() != i) {
-        if (botRange <= std_text[i] - '0' <= topRange) {
+        if ((botRange <= (std_text[i] - '0')) &&
+            (std_text[i] - '0') <= topRange) {
                 if (col == matrixSize || row == matrixSize) return "Wrong input (long line)";
                 matrix[row][col] = static_cast<unsigned char>(std_text[i] - '0');
                 ++i;
                 ++col;
-                continue;
-        }
-        if (col == matrixSize) {
+        } else {
             if (std_text[i] == ' ') {
                 ++i;
                 continue;
-            } else if (std_text[i] == '\n'){
+            } else if (std_text[i] == '\n') {
                 ++row;
+                col = 0;
                 ++i;
                 continue;
-            } else {
-                return "Wrong input";
             }
-            row++;
+            return "Wrong input";
         }
     }
     if (row * col != (matrixSize - 1)*(matrixSize - 1)) {
         return "Wrong input";
     } else {
-        return "Ok";
+        return "ok";
     }
 }
 
 QString MatrixStream::setMatrix_2(QString text) {
     matrix_2Text = text;
-    std::string std_text = matrix_2Text.toStdString();
+    std::string std_text = matrixText.toStdString();
     int row = 0;
     int col = 0;
-    int i = 0;
-    while (std_text[i] != '\0') {
-        if (botRange < std_text[i] - '0' < topRange) {
-                if (col == matrixSize || row == matrixSize) return "Wrong input (long line)";
+    unsigned int i = 0;
+    while (std_text.size() != i) {
+        if ((botRange <= (std_text[i] - '0')) &&
+            (std_text[i] - '0') <= topRange) {
+                if (col == matrix_2Size || row == matrix_2Size) return "Wrong input (long line)";
                 matrix_2[row][col] = static_cast<unsigned char>(std_text[i] - '0');
                 ++i;
                 ++col;
-                continue;
-        }
-        if (col == matrixSize) {
+        } else {
             if (std_text[i] == ' ') {
                 ++i;
                 continue;
-            } else if (std_text[i] == '\n'){
+            } else if (std_text[i] == '\n') {
                 ++row;
+                col = 0;
                 ++i;
                 continue;
-            } else {
-                return "Wrong input";
             }
-            row++;
+            return "Wrong input";
         }
     }
     if (row * col != (matrixSize - 1)*(matrixSize - 1)) {
         return "Wrong input";
     } else {
-        return "Ok";
+        return "ok";
     }
 }
 

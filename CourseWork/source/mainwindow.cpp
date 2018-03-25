@@ -7,6 +7,8 @@ MainWindow::MainWindow(QWidget *parent) :
 {   
     ui->setupUi(this);
     ui->shuffleBtn->setDisabled(true);
+    ui->isomorphismBtn->setDisabled(true);
+    ui->gomomorphismBtn->setDisabled(true);
 
     mStream.botRange = 0;
     mStream.topRange = 1;
@@ -19,10 +21,12 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+/*---------------------------------------------------*/
+/*-----------------  ФУНКЦИИ  -----------------------*/
+/*---------------------------------------------------*/
 void MainWindow::printPlot(vector<long long> v) {
     vector<long long> score = v;
-
-    //ui->setupUi(this);
 
     int N = score.size(); //Вычисляем количество точек, которые будем отрисовывать
     QVector<double> x(N + 1), y(N + 1); //Массивы координат точек
@@ -34,17 +38,14 @@ void MainWindow::printPlot(vector<long long> v) {
         y[i + 1] = score[i];
     }
 
-    ui->widget->clearGraphs();//Если нужно, но очищаем все графики
-    //Добавляем один график в widget
-    ui->widget->addGraph();
-    //Говорим, что отрисовать нужно график по нашим двум массивам x и y
-    ui->widget->graph(0)->setData(x, y);
-    //Подписываем оси Ox и Oy
-    ui->widget->xAxis->setLabel("N");
+    ui->widget->clearGraphs(); //Если нужно, то очищаем все графики
+    ui->widget->addGraph(); //Добавляем один график в widget
+    ui->widget->graph(0)->setData(x, y); //Говорим, что отрисовать нужно график по нашим двум массивам x и y
+    ui->widget->xAxis->setLabel("N"); //Подписываем оси Ox и Oy
     ui->widget->yAxis->setLabel("Size |Mn|");
 
     //Установим область, которая будет показываться на графике
-    if (N >= 50) {
+    if (N >= 30) {
         ui->widget->xAxis->setRange(0, 30);//Для оси Ox
     }
     else {
@@ -86,17 +87,24 @@ void MainWindow::shuffleMatrix(MatrixStream &mStream) {
     mStream.setMatrix(mStream.matrixText);
     ui->matrixEdit->setText(mStream.matrixText);
 }
+/*---------------------------------------------------*/
+/*---------------------------------------------------*/
+/*---------------------------------------------------*/
 
-void MainWindow::on_matrixSpinBox_valueChanged(int arg1)
-{
-    mStream.setMatrixSize(arg1);
-}
 
-void MainWindow::on_matrixSpinBox_2_valueChanged(int arg1)
-{
-    mStream.setMatrix_2Size(arg1);
-}
 
+
+
+
+
+
+
+
+
+
+/*---------------------------------------------------*/
+/*-------------   СЛОТЫ КНОПОК  ---------------------*/
+/*---------------------------------------------------*/
 void MainWindow::on_genRandomGraphBtn_clicked()
 {
     randomMatrix(mStream);
@@ -152,18 +160,62 @@ void MainWindow::on_gomomorphismBtn_clicked()
 
     printPlot(morphism.getScore());
 }
+/*---------------------------------------------------*/
+/*---------------------------------------------------*/
+/*---------------------------------------------------*/
 
 
 
+
+
+
+
+
+
+/*---------------------------------------------------*/
+/*------------- ТРИГЕРЫ СПИН-БОКСОВ  ----------------*/
+/*-----------------  И ТЕКСТОВ  ---------------------*/
+/*---------------------------------------------------*/
+void MainWindow::on_rangeSpinBox_valueChanged(int arg1)
+{
+    mStream.topRange = arg1;
+}
+void MainWindow::on_matrixSpinBox_valueChanged(int arg1)
+{
+    mStream.setMatrixSize(arg1);
+}
+void MainWindow::on_matrixSpinBox_2_valueChanged(int arg1)
+{
+    mStream.setMatrix_2Size(arg1);
+}
+
+/*---------------------------------------------------*/
 void MainWindow::on_matrixEdit_textChanged()
 {
     ui->matrixEdit->toPlainText().isEmpty() ?
         ui->shuffleBtn->setDisabled(true):
         ui->shuffleBtn->setEnabled(true);
+    if (ui->matrix_2Edit->toPlainText().isEmpty() ||
+        ui->matrixEdit->toPlainText().isEmpty()) {
+        ui->isomorphismBtn->setDisabled(true);
+        ui->gomomorphismBtn->setDisabled(true);
+    } else {
+        ui->isomorphismBtn->setEnabled(true);
+        ui->gomomorphismBtn->setEnabled(true);
+    }
 }
 
 void MainWindow::on_matrix_2Edit_textChanged()
 {
-
+    if (ui->matrix_2Edit->toPlainText().isEmpty() ||
+        ui->matrixEdit->toPlainText().isEmpty()) {
+        ui->isomorphismBtn->setDisabled(true);
+        ui->gomomorphismBtn->setDisabled(true);
+    } else {
+        ui->isomorphismBtn->setEnabled(true);
+        ui->gomomorphismBtn->setEnabled(true);
+    }
 }
-
+/*---------------------------------------------------*/
+/*---------------------------------------------------*/
+/*---------------------------------------------------*/

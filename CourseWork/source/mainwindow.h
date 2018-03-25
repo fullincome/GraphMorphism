@@ -39,6 +39,8 @@ private slots:
     void on_matrixEdit_textChanged();
     void on_matrix_2Edit_textChanged();
 
+    void on_rangeSpinBox_valueChanged(int arg1);
+
 private:
     Ui::MainWindow *ui;
 };
