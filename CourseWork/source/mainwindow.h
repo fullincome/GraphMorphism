@@ -24,6 +24,7 @@ public:
 
     void randomMatrix(MatrixStream &mStream);
     void shuffleMatrix(MatrixStream &mStream);
+    void shuffle_2Matrix(MatrixStream &mStream);
 
 private slots:
     void on_shuffleBtn_clicked();
@@ -40,6 +41,10 @@ private slots:
     void on_matrix_2Edit_textChanged();
 
     void on_rangeSpinBox_valueChanged(int arg1);
+
+    void on_copyMatrixBtn_clicked();
+
+    void on_shuffle_2Btn_clicked();
 
 private:
     Ui::MainWindow *ui;

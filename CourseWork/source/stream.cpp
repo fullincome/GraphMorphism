@@ -50,7 +50,7 @@ QString MatrixStream::setMatrix(QString text) {
 
 QString MatrixStream::setMatrix_2(QString text) {
     matrix_2Text = text;
-    std::string std_text = matrixText.toStdString();
+    std::string std_text = matrix_2Text.toStdString();
     int row = 0;
     int col = 0;
     unsigned int i = 0;
@@ -74,7 +74,7 @@ QString MatrixStream::setMatrix_2(QString text) {
             return "Wrong input";
         }
     }
-    if (row * col != (matrixSize - 1)*(matrixSize - 1)) {
+    if (row * col != (matrix_2Size - 1)*(matrix_2Size - 1)) {
         return "Wrong input";
     } else {
         return "ok";

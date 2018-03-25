@@ -31,7 +31,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>200</y>
+      <y>240</y>
       <width>171</width>
       <height>31</height>
      </rect>
@@ -45,14 +45,14 @@
      <enum>Qt::PreventContextMenu</enum>
     </property>
     <property name="text">
-     <string>Случайный граф</string>
+     <string>Случайная матрица</string>
     </property>
    </widget>
    <widget class="QSpinBox" name="matrixSpinBox">
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>80</y>
+      <y>20</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -71,7 +71,7 @@
     <property name="geometry">
      <rect>
       <x>290</x>
-      <y>80</y>
+      <y>20</y>
       <width>171</width>
       <height>31</height>
      </rect>
@@ -84,7 +84,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>120</y>
+      <y>60</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -108,8 +108,8 @@
    <widget class="QPushButton" name="automorphismBtn">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>200</y>
+      <x>30</x>
+      <y>110</y>
       <width>391</width>
       <height>31</height>
      </rect>
@@ -156,7 +156,7 @@
     <property name="geometry">
      <rect>
       <x>30</x>
-      <y>240</y>
+      <y>280</y>
       <width>171</width>
       <height>31</height>
      </rect>
@@ -183,8 +183,8 @@
    <widget class="QPushButton" name="isomorphismBtn">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>240</y>
+      <x>30</x>
+      <y>150</y>
       <width>391</width>
       <height>31</height>
      </rect>
@@ -203,8 +203,8 @@
    <widget class="QPushButton" name="gomomorphismBtn">
     <property name="geometry">
      <rect>
-      <x>260</x>
-      <y>280</y>
+      <x>30</x>
+      <y>190</y>
       <width>391</width>
       <height>31</height>
      </rect>
@@ -222,7 +222,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>80</y>
+      <y>20</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -241,7 +241,7 @@
     <property name="geometry">
      <rect>
       <x>150</x>
-      <y>120</y>
+      <y>60</y>
       <width>101</width>
       <height>31</height>
      </rect>
@@ -381,6 +381,42 @@
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
+   <widget class="QPushButton" name="copyMatrixBtn">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>240</y>
+      <width>201</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Скопировать первую матрицу</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="shuffle_2Btn">
+    <property name="geometry">
+     <rect>
+      <x>340</x>
+      <y>280</y>
+      <width>171</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>10</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>Перемешать</string>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
@@ -388,7 +424,7 @@
      <x>0</x>
      <y>0</y>
      <width>1355</width>
-     <height>21</height>
+     <height>26</height>
     </rect>
    </property>
   </widget>

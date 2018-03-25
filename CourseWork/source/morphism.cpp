@@ -101,31 +101,12 @@ int Morphism::getAutomorphism(QProgressBar *progress, QString &outs) {
     return 0;
 }
 
-void Morphism::Exchange(int i, int j) {
-	unsigned char tmp;
-	for (int k = 0; k < n; ++k) {
-		tmp = matrix[i][k];
-		matrix[i][k] = matrix[j][k];
-		matrix[j][k] = tmp;
-	}
-	for (int k = 0; k < n; ++k) {
-		tmp = matrix[k][i];
-		matrix[k][i] = matrix[k][j];
-		matrix[k][j] = tmp;
-	}
+int Morphism::getIsomorphism(QProgressBar *progress, QString &outs) {
+    return 0;
 }
 
-void Morphism::shuffleMatrix(QString &outs) {
-	for (int i = 0; i < n - 1; ++i) {
-        Exchange(i, (rand() % (n - i)) + i);
-	}
-    for (int i = 0; i < n; ++i) {
-        for (int j = 0; j < n; ++j) {
-            //matrix_2[i][j] = matrix[i][j];
-            outs += QString().sprintf("%d", matrix[i][j]);
-        }
-        outs.push_back('\n');
-    }
+int Morphism::getGomomorphism(QProgressBar *progress, QString &outs) {
+    return 0;
 }
 
 vector<long long> Morphism::getScore() {

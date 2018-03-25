@@ -7,13 +7,15 @@ MainWindow::MainWindow(QWidget *parent) :
 {   
     ui->setupUi(this);
     ui->shuffleBtn->setDisabled(true);
+    ui->shuffle_2Btn->setDisabled(true);
     ui->isomorphismBtn->setDisabled(true);
     ui->gomomorphismBtn->setDisabled(true);
+    ui->copyMatrixBtn->setDisabled(true);
 
     mStream.botRange = 0;
     mStream.topRange = 1;
     mStream.setMatrixSize(2);
-    mStream.setMatrixSize(2);
+    mStream.setMatrix_2Size(2);
 }
 
 MainWindow::~MainWindow()
@@ -87,6 +89,22 @@ void MainWindow::shuffleMatrix(MatrixStream &mStream) {
     mStream.setMatrix(mStream.matrixText);
     ui->matrixEdit->setText(mStream.matrixText);
 }
+
+void MainWindow::shuffle_2Matrix(MatrixStream &mStream) {
+    mStream.matrix_2Text.clear();
+    int n = mStream.matrix_2Size;
+    for (int i = 0; i < n - 1; ++i) {
+        mStream.exchange(mStream.matrix_2, i, (rand() % (n - i)) + i);
+    }
+    for (int i = 0; i < n; ++i) {
+        for (int j = 0; j < n; ++j) {
+            mStream.matrix_2Text += QString().sprintf("%d", mStream.matrix_2[i][j]);
+        }
+        mStream.matrix_2Text.push_back('\n');
+    }
+    mStream.setMatrix(mStream.matrix_2Text);
+    ui->matrix_2Edit->setText(mStream.matrix_2Text);
+}
 /*---------------------------------------------------*/
 /*---------------------------------------------------*/
 /*---------------------------------------------------*/
@@ -115,12 +133,26 @@ void MainWindow::on_shuffleBtn_clicked()
     shuffleMatrix(mStream);
 }
 
+void MainWindow::on_shuffle_2Btn_clicked()
+{
+    shuffle_2Matrix(mStream);
+}
+
+void MainWindow::on_copyMatrixBtn_clicked()
+{
+    ui->matrix_2Edit->setText(ui->matrixEdit->toPlainText());
+    mStream.setMatrix_2(ui->matrix_2Edit->toPlainText());
+}
+
 void MainWindow::on_automorphismBtn_clicked()
 {
+    ui->outputEdit->clear();
     ui->outputLabel->setText("Автоморфизмы:");
+    mStream.resultText.clear();
     mStream.setMatrix(ui->matrixEdit->toPlainText());
+    mStream.setMatrix_2(ui->matrixEdit->toPlainText());
 
-    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix);
+    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix_2);
     morphism.getAutomorphism(ui->progressBar, mStream.resultText);
     ui->outputEdit->setPlainText(mStream.resultText);
 
@@ -129,16 +161,16 @@ void MainWindow::on_automorphismBtn_clicked()
 
 void MainWindow::on_isomorphismBtn_clicked()
 {
+    ui->outputEdit->clear();
     ui->outputLabel->setText("Изоморфизмы:");
     mStream.resultText.clear();
-    ui->outputEdit->clear();
 
     //message.Simple(stroka);
     mStream.setMatrix(ui->matrixEdit->toPlainText());
     mStream.setMatrix(ui->matrix_2Edit->toPlainText());
 
-    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix);
-    morphism.getAutomorphism(ui->progressBar, mStream.resultText);
+    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix_2);
+    morphism.getIsomorphism(ui->progressBar, mStream.resultText);
     ui->outputEdit->setPlainText(mStream.resultText);
 
     printPlot(morphism.getScore());
@@ -146,16 +178,15 @@ void MainWindow::on_isomorphismBtn_clicked()
 
 void MainWindow::on_gomomorphismBtn_clicked()
 {
+    ui->outputEdit->clear();
     ui->outputLabel->setText("Гомоморфизмы:");
     mStream.resultText.clear();
-    ui->outputEdit->clear();
 
-    //message.Simple(stroka);
     mStream.setMatrix(ui->matrixEdit->toPlainText());
     mStream.setMatrix(ui->matrix_2Edit->toPlainText());
 
-    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix);
-    morphism.getAutomorphism(ui->progressBar, mStream.resultText);
+    Morphism morphism(mStream.matrixSize, mStream.matrix_2Size, mStream.matrix, mStream.matrix_2);
+    morphism.getGomomorphism(ui->progressBar, mStream.resultText);
     ui->outputEdit->setPlainText(mStream.resultText);
 
     printPlot(morphism.getScore());
@@ -192,9 +223,13 @@ void MainWindow::on_matrixSpinBox_2_valueChanged(int arg1)
 /*---------------------------------------------------*/
 void MainWindow::on_matrixEdit_textChanged()
 {
-    ui->matrixEdit->toPlainText().isEmpty() ?
-        ui->shuffleBtn->setDisabled(true):
+    if (ui->matrixEdit->toPlainText().isEmpty()) {
+        ui->shuffleBtn->setDisabled(true);
+        ui->copyMatrixBtn->setDisabled(true);
+    } else {
         ui->shuffleBtn->setEnabled(true);
+        ui->copyMatrixBtn->setEnabled(true);
+    }
     if (ui->matrix_2Edit->toPlainText().isEmpty() ||
         ui->matrixEdit->toPlainText().isEmpty()) {
         ui->isomorphismBtn->setDisabled(true);
@@ -207,6 +242,11 @@ void MainWindow::on_matrixEdit_textChanged()
 
 void MainWindow::on_matrix_2Edit_textChanged()
 {
+    if (ui->matrix_2Edit->toPlainText().isEmpty()) {
+        ui->shuffle_2Btn->setDisabled(true);
+    } else {
+        ui->shuffle_2Btn->setEnabled(true);
+    }
     if (ui->matrix_2Edit->toPlainText().isEmpty() ||
         ui->matrixEdit->toPlainText().isEmpty()) {
         ui->isomorphismBtn->setDisabled(true);
