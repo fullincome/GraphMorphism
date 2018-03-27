@@ -102,11 +102,11 @@ int Morphism::getAutomorphism(QProgressBar *progress, QString &outs) {
 }
 
 int Morphism::getIsomorphism(QProgressBar *progress, QString &outs) {
-    return 0;
+    return getAutomorphism(progress, outs);
 }
 
 int Morphism::getGomomorphism(QProgressBar *progress, QString &outs) {
-    return 0;
+    return getAutomorphism(progress, outs);
 }
 
 vector<long long> Morphism::getScore() {

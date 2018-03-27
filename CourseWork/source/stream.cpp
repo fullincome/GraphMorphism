@@ -32,7 +32,7 @@ QString MatrixStream::setMatrix(QString text) {
             if (std_text[i] == ' ') {
                 ++i;
                 continue;
-            } else if (std_text[i] == '\n') {
+            } else if ((std_text[i] == '\n') && (col == matrixSize)) {
                 ++row;
                 col = 0;
                 ++i;
@@ -41,7 +41,7 @@ QString MatrixStream::setMatrix(QString text) {
             return "Wrong input";
         }
     }
-    if (row * col != (matrixSize - 1)*(matrixSize - 1)) {
+    if (row != matrixSize) {
         return "Wrong input";
     } else {
         return "ok";
@@ -65,7 +65,7 @@ QString MatrixStream::setMatrix_2(QString text) {
             if (std_text[i] == ' ') {
                 ++i;
                 continue;
-            } else if (std_text[i] == '\n') {
+            } else if ((std_text[i] == '\n') && (col == matrix_2Size)) {
                 ++row;
                 col = 0;
                 ++i;
@@ -74,7 +74,7 @@ QString MatrixStream::setMatrix_2(QString text) {
             return "Wrong input";
         }
     }
-    if (row * col != (matrix_2Size - 1)*(matrix_2Size - 1)) {
+    if (row != matrix_2Size) {
         return "Wrong input";
     } else {
         return "ok";

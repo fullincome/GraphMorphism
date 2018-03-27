@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->setupUi(this);
     ui->shuffleBtn->setDisabled(true);
     ui->shuffle_2Btn->setDisabled(true);
+    ui->automorphismBtn->setDisabled(true);
     ui->isomorphismBtn->setDisabled(true);
     ui->gomomorphismBtn->setDisabled(true);
     ui->copyMatrixBtn->setDisabled(true);
@@ -70,8 +71,12 @@ void MainWindow::randomMatrix(MatrixStream &mStream) {
         }
         mStream.matrixText.push_back('\n');
     }
-    mStream.setMatrix(mStream.matrixText);
-    ui->matrixEdit->setText(mStream.matrixText);
+    QString retstr = mStream.setMatrix(mStream.matrixText);
+    if (retstr != "ok") {
+
+    } else {
+        ui->matrixEdit->setText(mStream.matrixText);
+    }
 }
 
 void MainWindow::shuffleMatrix(MatrixStream &mStream) {
@@ -152,7 +157,7 @@ void MainWindow::on_automorphismBtn_clicked()
     mStream.setMatrix(ui->matrixEdit->toPlainText());
     mStream.setMatrix_2(ui->matrixEdit->toPlainText());
 
-    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix_2);
+    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix);
     morphism.getAutomorphism(ui->progressBar, mStream.resultText);
     ui->outputEdit->setPlainText(mStream.resultText);
 
@@ -167,13 +172,17 @@ void MainWindow::on_isomorphismBtn_clicked()
 
     //message.Simple(stroka);
     mStream.setMatrix(ui->matrixEdit->toPlainText());
-    mStream.setMatrix(ui->matrix_2Edit->toPlainText());
+    mStream.setMatrix_2(ui->matrix_2Edit->toPlainText());
 
-    Morphism morphism(mStream.matrixSize, mStream.matrixSize, mStream.matrix, mStream.matrix_2);
-    morphism.getIsomorphism(ui->progressBar, mStream.resultText);
-    ui->outputEdit->setPlainText(mStream.resultText);
+    if (mStream.matrixSize != mStream.matrix_2Size) {
+        messageWarning(this, "Размеры матриц должны совпадать!");
+    } else {
+        Morphism morphism(mStream.matrixSize, mStream.matrix_2Size, mStream.matrix, mStream.matrix_2);
+        morphism.getIsomorphism(ui->progressBar, mStream.resultText);
+        ui->outputEdit->setPlainText(mStream.resultText);
 
-    printPlot(morphism.getScore());
+        printPlot(morphism.getScore());
+    }
 }
 
 void MainWindow::on_gomomorphismBtn_clicked()
@@ -183,13 +192,17 @@ void MainWindow::on_gomomorphismBtn_clicked()
     mStream.resultText.clear();
 
     mStream.setMatrix(ui->matrixEdit->toPlainText());
-    mStream.setMatrix(ui->matrix_2Edit->toPlainText());
+    mStream.setMatrix_2(ui->matrix_2Edit->toPlainText());
 
-    Morphism morphism(mStream.matrixSize, mStream.matrix_2Size, mStream.matrix, mStream.matrix_2);
-    morphism.getGomomorphism(ui->progressBar, mStream.resultText);
-    ui->outputEdit->setPlainText(mStream.resultText);
+    if (mStream.matrixSize < mStream.matrix_2Size) {
+        messageWarning(this, "Размер первой матрицы должен быть не меньше размера второй!");
+    } else {
+        Morphism morphism(mStream.matrixSize, mStream.matrix_2Size, mStream.matrix, mStream.matrix_2);
+        morphism.getGomomorphism(ui->progressBar, mStream.resultText);
+        ui->outputEdit->setPlainText(mStream.resultText);
 
-    printPlot(morphism.getScore());
+        printPlot(morphism.getScore());
+    }
 }
 /*---------------------------------------------------*/
 /*---------------------------------------------------*/
@@ -215,7 +228,7 @@ void MainWindow::on_matrixSpinBox_valueChanged(int arg1)
 {
     mStream.setMatrixSize(arg1);
 }
-void MainWindow::on_matrixSpinBox_2_valueChanged(int arg1)
+void MainWindow::on_matrix_2SpinBox_valueChanged(int arg1)
 {
     mStream.setMatrix_2Size(arg1);
 }
@@ -226,9 +239,11 @@ void MainWindow::on_matrixEdit_textChanged()
     if (ui->matrixEdit->toPlainText().isEmpty()) {
         ui->shuffleBtn->setDisabled(true);
         ui->copyMatrixBtn->setDisabled(true);
+        ui->automorphismBtn->setDisabled(true);
     } else {
         ui->shuffleBtn->setEnabled(true);
         ui->copyMatrixBtn->setEnabled(true);
+        ui->automorphismBtn->setEnabled(true);
     }
     if (ui->matrix_2Edit->toPlainText().isEmpty() ||
         ui->matrixEdit->toPlainText().isEmpty()) {
@@ -255,6 +270,32 @@ void MainWindow::on_matrix_2Edit_textChanged()
         ui->isomorphismBtn->setEnabled(true);
         ui->gomomorphismBtn->setEnabled(true);
     }
+}
+/*---------------------------------------------------*/
+/*---------------------------------------------------*/
+/*---------------------------------------------------*/
+
+
+
+
+
+
+/*---------------------------------------------------*/
+/*------------ ИНФОРМАЦИОННЫЕ СООБЩЕНИЯ -------------*/
+/*---------------------------------------------------*/
+void MainWindow::messageError(QWidget *window, QString message)
+{
+    QMessageBox::critical(window, tr("Ошибка"), message);
+}
+// Сообщение предупреждение
+void MainWindow::messageWarning(QWidget *window, QString message)
+{
+    QMessageBox::warning(window, tr("Предупреждение"), message);
+}
+// Сообщение об успехе
+void MainWindow::messageSuccess(QWidget *window, QString message)
+{
+    QMessageBox::information(window, tr("Успешно"), message);
 }
 /*---------------------------------------------------*/
 /*---------------------------------------------------*/

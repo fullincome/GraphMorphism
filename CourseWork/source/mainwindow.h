@@ -26,6 +26,11 @@ public:
     void shuffleMatrix(MatrixStream &mStream);
     void shuffle_2Matrix(MatrixStream &mStream);
 
+
+    void messageError(QWidget *window, QString message);
+    void messageWarning(QWidget *window, QString message);
+    void messageSuccess(QWidget *window, QString message);
+
 private slots:
     void on_shuffleBtn_clicked();
     void on_genRandomGraphBtn_clicked();
@@ -35,7 +40,7 @@ private slots:
     void on_gomomorphismBtn_clicked();
 
     void on_matrixSpinBox_valueChanged(int arg1);
-    void on_matrixSpinBox_2_valueChanged(int arg1);
+    void on_matrix_2SpinBox_valueChanged(int arg1);
 
     void on_matrixEdit_textChanged();
     void on_matrix_2Edit_textChanged();
