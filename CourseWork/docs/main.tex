@@ -4,7 +4,6 @@
 \usepackage{rotating} 
 
 \usepackage[english, russian]{babel}
-\usepackage[backend=biber, babel=other, style=gost-authoryear]{biblatex}
 \usepackage{amsfonts} % Пакеты для математических символов и теорем
 \usepackage{amstext}
 \usepackage{amssymb}
@@ -12,12 +11,14 @@
 \usepackage{graphicx} % Пакеты для вставки графики
 \usepackage{subfig}
 \usepackage{color}
-\usepackage[unicode]{hyperref}
+\usepackage[unicode]{hyperref} 
 \usepackage[nottoc]{tocbibind} % Для того, чтобы список литературы отображался в оглавлении
 \usepackage{algorithmic} % Для записи алгоритмов в псевдокоде
 \usepackage{algorithm}
 \usepackage{verbatim} % Для вставок заранее подготовленного текста в режиме as-is
-\usepackage{tikz}
+\usepackage{indentfirst}
+
+\usepackage{tikz} 
 \usetikzlibrary{shadows,arrows}
 
 \Chair{Кафедра информационной безопасности}
@@ -49,10 +50,6 @@
 \AdvisorText{Научный руководитель}
 \AbstractText{Аннотация}
 
-%\bibliographystyle{gost71u} % Для соответствия требованиям об оформлении списка литературы
-%#\bibliography{references}
-\addbibresource{references.bib}
-
 \begin{document}
 \fixmargins
 \makepreliminarypages
@@ -70,8 +67,8 @@
 \include{Chapter6} % Заключение
 
 \nocite{*}
-
-\printbibliography
+\bibliographystyle{gost71u}
+\bibliography{references}
 
 
 \end{document}

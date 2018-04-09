@@ -364,7 +364,7 @@
 %}
 
 % Redefine the Bibliography to deal with a bookmarking issues
-\let\TEMPography\bibliography
+\let\TEMPbibliography\bibliography
 \renewcommand{\bibliography}{
   \providecommand\phantomsection{} \phantomsection
   %\addcontentsline{toc}{chapter}{Литература}
@@ -550,7 +550,7 @@
     \noindent%
     As chair of the candidate's graduate committee, I have read the
     \@docname\ of \@Author \ in its final form and have found
-    that (1) its format, citations, and ographical style are
+    that (1) its format, citations, and bibliographical style are
     consistent and acceptable and fulfill university and department
     style requirements; (2) its illustrative materials including
     figures, tables, and charts are in place; and (3) the final
