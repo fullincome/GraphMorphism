@@ -1,0 +1,7 @@
+*.aux
+*.bbl
+*.blg
+*.log
+/CourseWork/docs/**/main.*
+!/CourseWork/docs/**/main.tex
+!/CourseWork/docs/**/main.pdf
