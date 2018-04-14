@@ -1,13 +1,156 @@
 \documentclass{beamer}
-\usetheme{metropolis} % Use metropolis theme
-\title{A minimal example}
-\date{\today}
-\author{Matthias Vogelgesang}
-\institute{Centre for Modern Beamer Themes}
+\usetheme{metropolis}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+
+% Конфигурация титульного листа
+%---------------------------
 \begin{document}
-\maketitle
-\section{First Section}
-\begin{frame}{First Frame}
-Hello, world!
+\title{Разработка итерационных алгоритмов поиска автоморфизмов
+и изоморфизмов комбинаторных объектов.}
+\institute{Московский Государственный Университет имени М.В.Ломоносова}   
+\author{Ефремов Степан} 
+\date{\today} 
+%---------------------------
+
+
+% 1 слайд - титульная страница
+%---------------------------
+\begin{frame}{}
+\titlepage 
 \end{frame}
+%---------------------------
+
+
+% 2 слайд - содержание
+%---------------------------
+\begin{frame}{Table of contents}
+\tableofcontents
+\end{frame} 
+%---------------------------
+
+
+\section{Первая секция}
+% 3 слайд
+%---------------------------
+\begin{frame}{Table of contents}
+Each frame should have a title.
+\end{frame} 
+%---------------------------
+
+
+% 4 слайд
+%---------------------------
+\begin{frame}{Table of contents}
+Each frame should have a title.
+\end{frame} 
+%---------------------------
+
+
+\section{Вторая секция}
+% 5 слайд
+%---------------------------
+\begin{frame}{unnumbered lists}
+\begin{itemize}
+\item Introduction to  \LaTeX  
+\item Course 2 
+\item Termpapers and presentations with \LaTeX 
+\item Beamer class
+\end{itemize} 
+\end{frame}
+%---------------------------
+
+
+% 6 слайд
+%---------------------------
+\begin{frame}{lists with pause}
+\begin{itemize}
+\item Introduction to  \LaTeX \pause 
+\item Course 2 \pause 
+\item Termpapers and presentations with \LaTeX \pause 
+\item Beamer class
+\end{itemize} 
+\end{frame}
+%---------------------------
+
+
+% 7 слайд
+%---------------------------
+\begin{frame}{numbered lists}
+\begin{enumerate}
+\item Introduction to  \LaTeX  
+\item Course 2 
+\item Termpapers and presentations with \LaTeX 
+\item Beamer class
+\end{enumerate}
+\end{frame}
+%---------------------------
+
+
+% 8 слайд
+%---------------------------
+\begin{frame}{numbered lists with pause}
+\begin{enumerate}
+\item Introduction to  \LaTeX \pause 
+\item Course 2 \pause 
+\item Termpapers and presentations with \LaTeX \pause 
+\item Beamer class
+\end{enumerate}
+\end{frame}
+%---------------------------
+
+
+\section{Третья секция} 
+% 9 слайд
+%---------------------------
+\begin{frame}{Tables}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{Date} & \textbf{Instructor} & \textbf{Title} \\
+\hline
+WS 04/05 & Sascha Frank & First steps with  \LaTeX  \\
+\hline
+SS 05 & Sascha Frank & \LaTeX \ Course serial \\
+\hline
+\end{tabular}
+\end{frame}
+%---------------------------
+
+
+% 10 слайд
+%---------------------------
+\begin{frame}{Tables with pause}
+\begin{tabular}{c c c}
+A & B & C \\ 
+\pause 
+1 & 2 & 3 \\  
+\pause 
+A & B & C \\ 
+\end{tabular}
+\end{frame}
+%---------------------------
+
+
+\section{Четвертая секция}
+% 11 слайд
+%---------------------------
+\begin{frame}{blocs}
+
+\begin{block}{title of the bloc}
+bloc text
+\end{block}
+
+\begin{exampleblock}{title of the bloc}
+bloc text
+\end{exampleblock}
+
+
+\begin{alertblock}{title of the bloc}
+bloc text
+\end{alertblock}
+\end{frame}
+%---------------------------
+
+
 \end{document}
