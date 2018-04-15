@@ -2,6 +2,9 @@
 *.bbl
 *.blg
 *.log
+build-automorphism*
+*.pro.user
 /CourseWork/docs/**/main.*
 !/CourseWork/docs/**/main.tex
 !/CourseWork/docs/**/main.pdf
+
