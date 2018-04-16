@@ -1,0 +1,73 @@
+\section*{Приложение Б}
+\addcontentsline{toc}{section}{Приложение Б}
+\label{sec:Appendix_2} \index{Appendix_2}
+\large 
+
+Ссылка на дипломную работу с программой на github:\\
+\href{https://github.com/fullincome/university}{https://github.com/fullincome/university}
+
+Схема реализации представлена на языке C++
+
+\begin{lstlisting}
+#define GRAPH_SIZE 300
+#define ROW_ARR_SIZE 10000 
+#define COL_ARR_SIZE GRAPH_SIZE
+
+const int N = GRAPH_SIZE;
+
+vector<array<unsigned short,COL_ARR_SIZE>> 
+Mi(ROW_ARR_SIZE, COL_ARR_SIZE);
+vector<array<unsigned short,COL_ARR_SIZE>> 
+M'i(ROW_ARR_SIZE, COL_ARR_SIZE);
+unsigned char **matrix;
+
+struct_M'i make_M'i(Mi) {
+    struct_M'i M'i;
+    for (auto x: Mi) {
+        for (int i = 0; i < n; ++i) {
+            if (check_h(x) && !eq(x, i)) {
+                M'i.push_back(x.add(i));
+            }
+        }
+    }
+    return M'i;
+}
+
+struct_Mi make_Mi(M'i) {
+    struct_Mi Mi;
+    for (auto x: M'i) {
+        for (int i = 0; i < n; ++i) {
+           Mi.push_back(x.add(i));
+        }
+    }
+    return Mi;
+}
+
+int main() {
+
+    //fill matrix
+    init_automorphisms(matrix);
+
+    //parallelization of program
+    switch(process) {
+    case 0:
+        begin = 0;
+        end = stop_0;
+    case 1:
+        begin = start_1;
+        end = stop_1;
+    ...
+    case N:
+        begin = start_n;
+        end = M_0.size();
+
+    //main cycle
+    for (i = begin; i < end; ++i) {
+        Mi = make_Mi(M'i-1);
+        M'i = make_M'i(Mi);
+    }
+
+    //results save (automorphisms output)
+    final_automorphism(M'i);
+}
+\end{lstlisting}
