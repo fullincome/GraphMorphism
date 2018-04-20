@@ -4,7 +4,7 @@
 *.log
 build-automorphism*
 *.pro.user
-/CourseWork/docs/**/main.*
-!/CourseWork/docs/**/main.tex
-!/CourseWork/docs/**/main.pdf
+/docs/**/main.*
+!/docs/**/main.tex
+!/docs/**/main.pdf
 
