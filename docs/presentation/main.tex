@@ -1,5 +1,6 @@
 \documentclass{beamer}
 \usetheme{metropolis}
+\usepackage{graphicx}
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 
@@ -16,6 +17,8 @@
 
 \author{\textit{\underline{Автор:}}\\ Ефремов Степан Сергеевич (419 группа)\\ \\
 \textit{\underline {Научный руководитель:}}\\ доцент, к.ф.- м.н.\\ Егоров Владимир Николаевич}
+
+\date{}
 
 %---------------------------
 
@@ -111,56 +114,45 @@
 % 7 слайд
 %---------------------------
 \begin{frame}{numbered lists}
+
+Набор и границы значений изменяемых параметров запуска реализации алгоритма: 
+
 \begin{enumerate}
-\item Introduction to  \LaTeX  
-\item Course 2 
-\item Termpapers and presentations with \LaTeX 
-\item Beamer class
+\item Число процессоров [4 : 128] с шагом $ 2^n$ (точки отображены с шагом 4, усреднив результаты);
+\item Размер матрицы [300 : 1000].
 \end{enumerate}
+
 \end{frame}
 %---------------------------
 
 
-% 8 слайд
-%---------------------------
-\begin{frame}{numbered lists with pause}
-\begin{enumerate}
-\item Introduction to  \LaTeX \pause 
-\item Course 2 \pause 
-\item Termpapers and presentations with \LaTeX \pause 
-\item Beamer class
-\end{enumerate}
-\end{frame}
-%---------------------------
 
 
 \section{Результаты} 
-% 9 слайд
+
+% 8 слайд
 %---------------------------
-\begin{frame}{Tables}
-\begin{tabular}{|c|c|c|}
-\hline
-\textbf{Date} & \textbf{Instructor} & \textbf{Title} \\
-\hline
-WS 04/05 & Sascha Frank & First steps with  \LaTeX  \\
-\hline
-SS 05 & Sascha Frank & \LaTeX \ Course serial \\
-\hline
-\end{tabular}
+\begin{frame}{Изменение производительности}
+
+\begin{figure}[ht]
+\centering 
+    \includegraphics[scale=0.4]{../image/p.jpg}
+\end{figure}
+
 \end{frame}
 %---------------------------
 
 
-% 10 слайд
+
+% слайд
 %---------------------------
-\begin{frame}{Tables with pause}
-\begin{tabular}{c c c}
-A & B & C \\ 
-\pause 
-1 & 2 & 3 \\  
-\pause 
-A & B & C \\ 
-\end{tabular}
+\begin{frame}{Изменение эффективности}
+
+\begin{figure}[ht]
+\centering 
+    \includegraphics[scale=0.4]{../image/ef.jpg}
+\end{figure}
+
 \end{frame}
 %---------------------------
 
@@ -168,20 +160,15 @@ A & B & C \\
 \section{Положения, выносимые на защиту}
 % 11 слайд
 %---------------------------
-\begin{frame}{blocs}
+\begin{frame}{Положения, выносимые на защиту}
 
-\begin{block}{title of the bloc}
-bloc text
-\end{block}
+Разработка итерационного алгоритма поиска автоморфизмов графов:
+\begin{itemize}
+\item Выполнена модернизация алгоритма
+\item Сформулировано утверждение вероятностной сложности алгоритма
+\item Реализовано 2 програмы: с графическим интерфейсом для удобного использования, с консольным интерфейсом для запуска на суперкомпьютере\item Проведены опыты на суперкомпьютере <<Ломоносов>>
+\end{itemize}
 
-\begin{exampleblock}{title of the bloc}
-bloc text
-\end{exampleblock}
-
-
-\begin{alertblock}{title of the bloc}
-bloc text
-\end{alertblock}
 \end{frame}
 %---------------------------
 
