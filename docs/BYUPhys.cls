@@ -83,6 +83,7 @@
 
 % Second line of title
 \newcommand{\TitleBottom}[1]{\gdef\@TitleBottom{\mbox{#1}}}
+\newcommand{\TitleName}[1]{\gdef\@TitleName{\mbox{#1}}}
 \newcommand{\TitleBottomEng}[1]{\gdef\@TitleBottomEng{\mbox{#1}}}
 
 % Abstract text
@@ -138,9 +139,10 @@
 \University{2010}
   \Year{2010}
   \Month{Month}
-  \Author{Author}
+  \Author{}
   \TitleTop{Title}
   \TitleBottom{ } % default is empty
+  \TitleName{ }
   \Abstract{Abstract text goes here.}
 %  \Acknowledgments{Acknowledgment text goes here.}
 %  \degree{Bachelor of Science}
@@ -381,17 +383,18 @@
 	    {\@Chair\\}
 	    {\scriptsize \@Lab\\[\baselineskip]}
 	    \vfill
-	    {\large \@docname \\[\baselineskip]
+	    {\large {\Large \@docname} \\[\baselineskip]
 	    %\HRule \\[0.4cm]
 	    \textbf{\@TitleTop}\\
-	    \textbf{\@TitleBottom}\\}
+	    \textbf{\@TitleBottom}\\[\baselineskip]
+	    \@TitleName\\}
 	    %\HRule \\[1.5cm]
 	    \normalsize
 	    \vfill
 	    \begin{flushright}
-	    \emph{\@AuthorText:\\}
-	    {\small \@GrText~\@AcadGroup\\}
-	    {\large \@Author \\[\baselineskip]}
+	    %\emph{\@AuthorText:\\}
+	    %{\small \@GrText~\@AcadGroup\\}
+	    %{\large \@Author \\[\baselineskip]}
 	    \emph{\@AdvisorText:\\}
 	    {\large ~ \@AdvisorDegree~ \@Advisor\\}
 	    \end{flushright}
@@ -415,7 +418,8 @@
     %\providecommand\pdfbookmark[3][]{} \pdfbookmark[0]{Title Page}{bm:Title}    
     \vspace*{0.375in}
     \@TitleTop\\[\baselineskip]
-    \@TitleBottom\\
+    \@TitleBottom\\[\baselineskip]
+	\@TitleName\\    
     \vfill
     \@Author, 
     \vfill
