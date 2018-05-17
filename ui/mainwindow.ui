@@ -308,10 +308,10 @@
      </rect>
     </property>
     <property name="minimum">
-     <number>2</number>
+     <number>0</number>
     </property>
     <property name="maximum">
-     <number>450</number>
+     <number>9</number>
     </property>
     <property name="value">
      <number>2</number>
@@ -336,7 +336,7 @@
      <number>0</number>
     </property>
     <property name="maximum">
-     <number>255</number>
+     <number>9</number>
     </property>
     <property name="value">
      <number>1</number>
@@ -424,7 +424,7 @@
      <x>0</x>
      <y>0</y>
      <width>1355</width>
-     <height>31</height>
+     <height>22</height>
     </rect>
    </property>
   </widget>

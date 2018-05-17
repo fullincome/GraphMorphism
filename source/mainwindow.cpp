@@ -67,7 +67,7 @@ void MainWindow::randomMatrix(MatrixStream &mStream) {
     int n = mStream.matrixSize;
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            mStream.matrixText += QString().sprintf("%d", mStream.botRange + rand() % (mStream.topRange + 1));
+            mStream.matrixText += QString().sprintf("%d", mStream.botRange + rand() % (mStream.topRange + 1)) += QString(" ");
         }
         mStream.matrixText.push_back('\n');
     }
@@ -87,7 +87,7 @@ void MainWindow::shuffleMatrix(MatrixStream &mStream) {
     }
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            mStream.matrixText += QString().sprintf("%d", mStream.matrix[i][j]);
+            mStream.matrixText += QString().sprintf("%d", mStream.matrix[i][j]) += QString(" ");
         }
         mStream.matrixText.push_back('\n');
     }
@@ -103,7 +103,7 @@ void MainWindow::shuffle_2Matrix(MatrixStream &mStream) {
     }
     for (int i = 0; i < n; ++i) {
         for (int j = 0; j < n; ++j) {
-            mStream.matrix_2Text += QString().sprintf("%d", mStream.matrix_2[i][j]);
+            mStream.matrix_2Text += QString().sprintf("%d", mStream.matrix_2[i][j]) += QString(" ");
         }
         mStream.matrix_2Text.push_back('\n');
     }
