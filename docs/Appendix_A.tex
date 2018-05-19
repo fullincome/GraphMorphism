@@ -17,21 +17,7 @@
     \label{program_example}
 \end{figure}
 
-\begin{figure}[H]
-\centering
-	\begin{tikzpicture}[>=triangle 45,font=\sffamily]
-    \node (X) at (0,0) {$M_0$};
-    \node (Y) [below left=2cm and 1cm of X]  {$M_i$};
-    \node (Z) [below right=2cm and 1cm of X] {$M_i$};
-    \node (U) [below left=2cm and 1cm of Z]  {$M'_n$};
-    \draw [semithick,->] (X) -- (Y);
-    \draw [semithick,->] (X) -- (Z);
-    \draw [semithick,->] (Y) -- (U) node [midway,below,sloped] {*};
-    \draw [semithick,->] (Z) -- (U) node [midway,below,sloped] {*};
-	\end{tikzpicture}
-	\caption{Схема алгоритма}
-	\label{algo_scheme}
-\end{figure}
+
 
 \begin{figure}[H]
 \centering
