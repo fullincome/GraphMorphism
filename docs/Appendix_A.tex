@@ -18,6 +18,12 @@
 \end{figure}
 
 
+\begin{figure}[H]
+\centering
+    \includegraphics[scale=0.9]{image/graphs.jpg}
+    \caption{График сложности алгоритма}
+    \label{graphs_func}
+\end{figure}
 
 \begin{figure}[H]
 \centering
@@ -27,8 +33,10 @@
       \draw[->] (0,0) -- (0,47) node[above] {$f(n)$};
       \draw[color=red]    plot (\x,{pow(\x, 2) * pow(e/2, pow(ln(\x), 2)) * ln(\x)/300 })             node[right] {\Large $f(n) = n^2(\frac{e}{2})^{\ln(n)^2} \ln(n)$}; 
       \draw[color=blue]   plot (\x,{pow(e, sqrt(\x * log10(\x)))/20})    node[right] {\Large $f(n) = e^{\sqrt{n \times \log(n)}}$}; 
-      \draw[color=blue] plot (\x,{pow(\x, pow(\x ,1/3) * pow(log10(\x), 2))/300}) node[right] {\Large $f(n) = n^{\O({n^{1/3}\log^{2} n})}$};
+      \draw[color=blue] plot (\x,{pow(\x, pow(\x ,1/3) * pow(log10(\x), 2))/300}) node[right] {\Large $f(n) = n^{{n^{1/3}\log^{2} n}}$};
   	\end{tikzpicture}
 	\caption{График сложности алгоритма}
 	\label{algo_func}
 \end{figure}
+
+
