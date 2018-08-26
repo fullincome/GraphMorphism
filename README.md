@@ -1,3 +1,3 @@
 # Graduate work
 
-## Разработка итерационных алгоритмов поиска автоморфизмов и изоморфизмов комбинаторных объектов.
+## Development of iterative algorithms for searching automorphisms and isomorphisms of combinatorial objects.
